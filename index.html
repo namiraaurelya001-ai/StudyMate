@@ -1,0 +1,296 @@
+html_code = r"""
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate - Smart Learning Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>StudyMate<span>.</span></h2>
+                <small>LEARN SMARTER</small>
+            </div>
+        </div>
+
+        <div class="menu-label">MENU UTAMA</div>
+
+        <nav>
+            <button class="nav-link active" data-target="dashboard">
+                <span>▦</span> Dashboard
+            </button>
+            <button class="nav-link" data-target="tasks">
+                <span>✓</span> My Tasks
+            </button>
+            <button class="nav-link" data-target="schedule">
+                <span>▣</span> Schedule
+            </button>
+            <button class="nav-link" data-target="focus">
+                <span>◷</span> Focus Room
+            </button>
+            <button class="nav-link" data-target="notes">
+                <span>▤</span> My Notes
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <div class="help-icon">✦</div>
+                <h3>Keep Learning!</h3>
+                <p>Small progress is still progress.</p>
+            </div>
+            <p class="version">STUDYMATE VERSION 1.0</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p>
+                <h2 id="pageTitle">Dashboard</h2>
+            </div>
+            <div class="profile">
+                <div class="avatar">S</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Learning enthusiast</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page active">
+
+            <div class="welcome">
+                <div>
+                    <p>MONDAY · YOUR NEW JOURNEY</p>
+                    <h1>Good morning, Student! 👋</h1>
+                    <span>Ready to make today productive?</span>
+                </div>
+                <div class="welcome-symbol">✦</div>
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <h3>Your Overview</h3>
+                    <p>Let's see your learning progress.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon purple">▤</div>
+                    <p>Total Tasks</p>
+                    <h2 id="totalTasks">0</h2>
+                    <small>All your assignments</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+                    <p>Completed</p>
+                    <h2 id="completedTasks">0</h2>
+                    <small>Tasks finished</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">◷</div>
+                    <p>Pending Tasks</p>
+                    <h2 id="pendingTasks">0</h2>
+                    <small>Waiting to be done</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">↗</div>
+                    <p>Progress</p>
+                    <h2 id="progressPercent">0%</h2>
+                    <small>Your learning progress</small>
+                </div>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Recent Tasks</h3>
+                            <p>Your latest assignments</p>
+                        </div>
+                        <button class="text-button" data-target="tasks">View all →</button>
+                    </div>
+                    <div id="dashboardTasks" class="task-list"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Learning Progress</h3>
+                            <p>Task completion rate</p>
+                        </div>
+                    </div>
+
+                    <div class="progress-circle" id="progressCircle">
+                        <div>
+                            <strong id="circlePercent">0%</strong>
+                            <small>Completed</small>
+                        </div>
+                    </div>
+
+                    <p class="progress-message" id="progressMessage">
+                        Start completing your tasks!
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TASKS -->
+        <section id="tasks" class="page">
+            <div class="section-heading">
+                <div>
+                    <h3>My Tasks</h3>
+                    <p>Manage your assignments and deadlines.</p>
+                </div>
+            </div>
+
+            <form id="taskForm" class="add-task-form">
+                <input id="taskInput" type="text"
+                    placeholder="Enter your assignment..." required>
+
+                <select id="taskSubject">
+                    <option value="General">General</option>
+                    <option value="Matematika">Matematika</option>
+                    <option value="Bahasa Inggris">Bahasa Inggris</option>
+                    <option value="Ekonomi">Ekonomi</option>
+                    <option value="Sejarah">Sejarah</option>
+                    <option value="Informatika">Informatika</option>
+                </select>
+
+                <input id="taskDate" type="date" required>
+                <button type="submit" class="primary-button">+ Add Task</button>
+            </form>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Assignment List</h3>
+                        <p>Check your tasks when completed.</p>
+                    </div>
+                </div>
+                <div id="allTasks" class="task-list"></div>
+            </div>
+        </section>
+
+        <!-- SCHEDULE -->
+        <section id="schedule" class="page">
+            <div class="section-heading">
+                <div>
+                    <h3>Study Schedule</h3>
+                    <p>Your weekly learning routine.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Weekly Schedule</h3>
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <strong>08.00 - 09.30</strong>
+                        <div><b>Matematika</b><small>Room 10 · Monday</small></div>
+                        <span class="subject-tag purple-tag">Math</span>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>10.00 - 11.30</strong>
+                        <div><b>Bahasa Inggris</b><small>Room 10 · Tuesday</small></div>
+                        <span class="subject-tag blue-tag">English</span>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>08.00 - 09.30</strong>
+                        <div><b>Ekonomi</b><small>Room 10 · Wednesday</small></div>
+                        <span class="subject-tag green-tag">Economics</span>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>10.00 - 11.30</strong>
+                        <div><b>Sejarah</b><small>Room 10 · Thursday</small></div>
+                        <span class="subject-tag orange-tag">History</span>
+                    </div>
+                </div>
+                <p class="hint">Contoh jadwal. Jadwal dapat dikembangkan menjadi jadwal yang bisa diedit.</p>
+            </div>
+        </section>
+
+        <!-- FOCUS -->
+        <section id="focus" class="page">
+            <div class="section-heading">
+                <div>
+                    <h3>Focus Room</h3>
+                    <p>Take your time and focus on one thing.</p>
+                </div>
+            </div>
+
+            <div class="focus-card">
+                <div class="focus-decoration">✦</div>
+                <p>YOUR FOCUS SESSION</p>
+                <h1 id="timerDisplay">25:00</h1>
+                <span id="timerStatus">Ready to focus?</span>
+
+                <div class="timer-buttons">
+                    <button id="startTimer" class="primary-button">Start Focus</button>
+                    <button id="pauseTimer" class="secondary-button">Pause</button>
+                    <button id="resetTimer" class="secondary-button">Reset</button>
+                </div>
+                <small>Pomodoro technique · 25 minutes</small>
+            </div>
+        </section>
+
+        <!-- NOTES -->
+        <section id="notes" class="page">
+            <div class="section-heading">
+                <div>
+                    <h3>My Notes</h3>
+                    <p>Write down your important learning materials.</p>
+                </div>
+            </div>
+
+            <div class="panel notes-panel">
+                <label for="noteTitle">Note Title</label>
+                <input id="noteTitle" type="text" placeholder="Enter note title...">
+
+                <label for="noteContent">Your Notes</label>
+                <textarea id="noteContent" rows="12"
+                    placeholder="Start writing your study notes here..."></textarea>
+
+                <div class="notes-footer">
+                    <span id="saveStatus">Your notes are saved locally.</span>
+                    <button id="clearNotes" class="secondary-button">Clear Notes</button>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 StudyMate. Made for better learning.</p>
+        </footer>
+
+    </main>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+"""
+
+with open(project + "/index.html", "w", encoding="utf-8") as f:
+    f.write(html_code)
+
+print("index.html berhasil dibuat!")
